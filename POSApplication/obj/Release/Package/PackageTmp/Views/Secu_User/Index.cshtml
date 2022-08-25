@@ -1,0 +1,168 @@
+﻿@model IEnumerable<POSApplication.Models.Secu_User>
+@using POSApplication.Helper
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    POSApplication.Models.POSDBContext db = new POSApplication.Models.POSDBContext();
+
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>User  List</b></div>
+
+
+
+    <div class="panel-body">
+        <p>
+            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-success" })
+        </p><br>
+
+   
+            <table id="datatable"class="table table-responsive table-bordered datatable1  datatable-show-all">
+                <thead>
+                    <tr class="bg-blue">
+                        <th class="col-lg-2">
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th class="col-lg-1">
+                            @*@Html.DisplayNameFor(model => model.RoleId)*@
+                            Role
+                        </th>
+                        <th class="col-lg-1">
+                            @*@Html.DisplayNameFor(model => model.IsAdmin)*@
+                            Admin
+                        </th>
+                        <th class="col-lg-1">
+                            @*@Html.DisplayNameFor(model => model.UserStatus)*@
+                            Status
+                        </th>
+                        <th class="col-lg-2">
+                            Company
+                        </th>
+                        <th class="col-lg-2">
+                            @Html.DisplayNameFor(model => model.LastLoginDate)
+                        </th>
+                       
+
+                        <th class="col-lg-2">
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @{
+                                    var roleCheck = db.Secu_Role.FirstOrDefault(x => x.Id == item.RoleId);
+                                    var roleName = "";
+
+                                    if (roleName == null)
+                                    {
+                                        roleName = "";
+                                    }
+                                    else
+                                    {
+                                        roleName = roleCheck.Name;
+                                    }
+                                }
+                                <label>@roleName</label>
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.IsAdmin)
+                            </td>
+                            <td align="center">
+                                @{
+                                    if (item.UserStatus == "1")
+                                    {
+                                        <span class="badge badge-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-warning">Inactive</span>
+                                    }
+                                }
+                                @*@Html.DisplayFor(modelItem => item.UserStatus)*@
+                            </td>
+                            <td></td>
+                            <td>
+                                @NullHelper.GetPrettyDate(DateTime.Now.AddMinutes(-(DateTime.Now.Subtract((item.LastLoginDate ?? DateTime.Now)).TotalMinutes)))
+                                @*@item.LastLoginDate*@
+                            </td>
+                          
+                            <td>
+                           
+                                @Html.ActionLink(" ", "Edit", new { Id = item.Id }, new { @class = "btn btn-xs-info  glyphicon glyphicon-pencil", @title = "Edit" })
+                                @*@Html.ActionLink(" ", "Details", new { Id = item.Id }, new { @class = "btn btn-xs text-info  icon-file-text2", @title = "Details" })*@
+                                <a class="btn btn-xs labeled btn-danger" title="Delete" href="javascript:deleteFunction(@item.Id)"><i class="glyphicon glyphicon-remove"></i>   </a>
+                            </td>
+                        </tr>
+                                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    @section scripts
+{
+        @*@Scripts.Render("~/bundles/jqueryval")*@
+
+        <script>
+            //$(".select2").select2();
+            $("#datatable").DataTable();
+            function deleteFunction(Id) {
+                var Con = confirm("are you sure want to delete this ?");
+                if (Con == true) {
+                    $.ajax({
+                        url: "/Secu_User/DeleteItem",
+                        type: "post",
+                        data: {
+                            Id: Id
+                        },
+                        dataType: "json",
+
+                        success: function (flag) {
+                            console.log(flag);
+
+                            if (flag.flag == true) {
+                                Swal.fire({
+                                    position: 'top',
+                                    icon: 'success',
+                                    title: 'Successfully Deleted!',
+                                    showConfirmButton: true,
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location = "/Secu_User/Index";
+
+                                    }
+                                })
+                            }
+
+                            else {
+                                alert(flag.message);
+                            }
+                        },
+
+                        error: function (xhr) {
+                            alert('error');
+
+                        }
+
+
+                    });
+                }
+
+            }
+        </script>
+    }
+
+

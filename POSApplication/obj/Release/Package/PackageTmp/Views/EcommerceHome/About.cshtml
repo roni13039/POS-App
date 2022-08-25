@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+}
+
+<section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Content/EcommerceContent/images/aboutus.jpg);height:500px; margin-top:110px;">
+            </div>
+            @*<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(/Content/EcommerceContent/images/aboutuss.jpg);height:500px;width:120px; margin-top:110px;">
+            </div>*@
+            <div class="col-md-6 py-5 wrap-about pb-md-5 ftco-animate">
+                <div class="heading-section-bold mb-4 mt-md-5">
+                    <div class="ml-md-0">
+                        <h2 class="mb-4">Welcome to @Session["CompanyName"].ToString()</h2>
+                    </div>
+                </div>
+                <div class="pb-md-5">
+                    <h5><b>WE ARE PROFESSIONAL MAINTENANCE COMPANY</b></h5>
+                    <p>Welcome to <b>@Session["CompanyName"].ToString()</b>, the best home maintenance services company in Bangladesh. With a reputation which we earned from our quality services; we know the value of client’s money, so we always work hard to keep our clients happy. We at SERVICELID, provide annual maintenance contracts and maintenance services. We additionally offer cleaning services, carpentry services, plumbing services, electric hardware installation, floor maintenance services, sofa and carpet cleaning, glass and wooden work all over Bangladesh. Our motive is, to keep our clients satisfied with the quality of services.</p>
+                    <p>We utilize experienced experts lead by an exceptionally qualified supervisory team that understands the maintenance business very well. Our professional team gives every minute of the everyday service and guarantees an on-site reaction. We keep running on the most recent technologies which streamline tasks, management of the services and client benefit. The organization uses the latest equipment, hardware & systems to limit downtime and guarantee representative and client wellbeing.</p>
+                    <h5><b>OUR QUALITY SERVICES INCLUDE:</b></h5>
+                    <p>
+                        <ul>
+                            <li>Professional team with complete knowledge of the maintenance.</li>
+                            <li>No hidden charges for any service.</li>
+                            <li>Quick response on clients’ inquiries.</li>
+                            <li>Use of latest tools and technologies.</li>
+                        </ul>
+                    </p>
+                    <p><b>@Session["CompanyName"].ToString()</b> is the team with one mission and one vision, we do our business with flexibility and honesty. we understand the value of a client and we respect them. We do our best to build a professional and personal relationship with every one of our clients, even with our talented team, office staff and the executives we constantly figure out how to additionally enhance our quality of services. We will take care of your property so that you can be assured that your property is in safe hands.</p>
+                    <p><a href="@Url.Action("Index", "EcommerceHome")" class="btn btn-primary">Home</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

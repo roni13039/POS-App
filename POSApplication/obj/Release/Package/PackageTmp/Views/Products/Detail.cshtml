@@ -1,0 +1,116 @@
+﻿@model POSApplication.Models.Product
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title">Product Details</h5>
+    </div>
+    <div class="panel-body">
+
+
+
+
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*<h4>Product</h4>
+                    <hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Product Code", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Product Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Supplier Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @*@Html.EditorFor(model => model.SupplierId, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("SupplierId", null, "--Select--", htmlAttributes: new { @id = "SupplierId", @class = "form-control", required = "required", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.ProductCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Product Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @*@Html.EditorFor(model => model.ProductCategoryId, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("ProductCategoryId", null, "--Select--", htmlAttributes: new { @id = "ProductCategoryId", @class = "form-control", required = "required", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.PurchasePrice, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Purchase Price", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.PurchasePrice, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.PurchasePrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.SalesPrice, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("Sales Price", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.SalesPrice, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.SalesPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                        @*<input type="submit" value="Save" class="btn btn-success" />*@
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+            $(document).ready(function () {
+                $(".select2").select2();
+            });
+</script>
+}

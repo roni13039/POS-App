@@ -1,0 +1,288 @@
+﻿@model IEnumerable<POSApplication.ViewModel.VMCartProduct>
+@{
+    ViewBag.Title = "CartProduct";
+    Layout = null;
+
+    var si = 0;
+
+    var Price = 0.00m;
+    var totalPrice = 0.00m;
+}
+<head>
+    <link href="~/Content/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <script src="~/Content/EcommerceContent/js/jquery.min.js"></script>
+    <script src="~/Content/EcommerceContent/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/EcommerceContent/js/popper.min.js"></script>
+    <script src="~/Content/EcommerceContent/js/bootstrap.min.js"></script>
+</head>
+
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            @*<div class="col-md-12 ftco-animate">
+                <div class="cart-list">*@
+
+
+
+
+            <table class="table col-8" style="margin-left:50px;">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>SI No</th>
+                        <th>ProductImage</th>
+                        <th>Product name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        si++;
+                        Price = item.Quantity * item.Price;
+                        totalPrice = Price + totalPrice;
+
+                        <tr class="text-center">
+
+                            <td><input type="hidden" name="Id" value="@item.ProductId" class="form-control  input-sm Id" readonly /><input type="text" name="SlNo" value="@si" class="form-control  input-sm SlNo" readonly /></td>
+
+                            <td><img src="@Url.Content(@item.ImageUrl)" alt="productmage" width="60" height="50">@*<input type="text" name="ProductImage" value="" class="form-control  input-sm ProductImage" readonly />*@</td>
+
+                            <td><input type="text" name="Productname" value="@item.ProductName" class="form-control text-black input-sm Productname" readonly /></td>
+
+                            <td><input type="text" name="Price" value="@item.Price" class="form-control text-black input-sm Price" readonly /></td>
+
+                            <td><input type="text" name="Quantity" value="@item.Quantity" class="form-control text-black input-sm Quantity" /></td>
+
+                            <td><input type="text" name="Total" value="@Price" class="form-control  input-sm Total" readonly /></td>
+
+
+                        </tr><!-- END TR-->
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="bg-blue">Total</td>
+                        <td>
+
+                            @*<input type="text" name="TotalAmount" class="bg-primary text-black-80" id="TotalAmount" readonly />*@
+                        </td>
+                        <td>
+
+                            <input type="text" value="@totalPrice" name="TotalAmount" class="bg-primary text-black-80" id="TotalAmount" readonly />
+                        </td>
+                </tfoot>
+            </table>
+            @*</div>
+                </div>*@
+        </div>
+        <div class="row justify-content-end">
+
+            @*<button type="button" class="btn btn-primary">Primary</button>*@
+        </div>
+    </div>
+</section>
+
+
+
+@*<section class="ftco-section">*@
+<div class="container" style="margin-top:-90px;">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 ftco-animate">
+            <form action="#" class="billing-form">
+                <h3 class="col-lg-10 billing-heading" style="text-align:center">Order Details</h3>
+                <div class="row align-items-end">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="phone">User Name</label>
+                            <input type="text" class="bg-primary text-black-80" id="UserName" placeholder="" style="color:black">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Town">Town/City</label>
+                            <input type="text" id="Town" class="bg-primary text-black-80" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Phone">Phone</label>
+                            <input type="text" id="Phone" class="bg-primary text-black-80" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="emailaddress">Email Address</label>
+                            <input type="text" id="Email" class="bg-primary text-black-80" placeholder="">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="col-lg-10" style="text-align:center">
+                        <button type="button" class="btn btn-primary" id="Orderbtn">Order Checkout</button>
+                    </div>
+
+                    <br>
+
+                    <br>
+                </div>
+            </form><!-- END -->
+        </div>
+
+    </div>
+</div>
+<br>
+
+<br>
+
+@*</section>*@ <!-- .section -->
+
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+<script src="~/Content/EcommerceContent/js/jquery.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="~/Content/EcommerceContent/js/popper.min.js"></script>
+<script src="~/Content/EcommerceContent/js/bootstrap.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.easing.1.3.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.waypoints.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.stellar.min.js"></script>
+<script src="~/Content/EcommerceContent/js/owl.carousel.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.magnific-popup.min.js"></script>
+<script src="~/Content/EcommerceContent/js/aos.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.animateNumber.min.js"></script>
+<script src="~/Content/EcommerceContent/js/bootstrap-datepicker.js"></script>
+<script src="~/Content/EcommerceContent/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="~/Content/EcommerceContent/js/google-map.js"></script>
+<script src="~/Content/EcommerceContent/js/main.js"></script>
+
+<script src="~/Content/sweetalert2/dist/sweetalert2.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+
+    $('#Orderbtn').click(function () {
+
+
+        if ($('#UserName').val() == "") {
+            Swal.fire({
+                position: 'top',
+                icon: 'error',
+                title: 'The User Name is Reqired'
+
+            })
+
+            $('#UserName').focus();
+        }
+
+       else if ($('#Phone').val() == "") {
+            Swal.fire({
+                position: 'top',
+                icon: 'error',
+                title: 'The User Phone is Reqired'
+
+            })
+
+            $('#Phone').focus();
+        }
+
+        else {
+            SaveData();
+        }
+
+
+    });
+
+
+    function SaveData() {
+
+        var UserName = $('#UserName').val();
+        var Town = $('#Town').val();
+        var Phone = $('#Phone').val();
+        var Email = $('#Email').val();
+
+
+
+        var Id = document.getElementsByName("Id");
+
+        var Quantity = document.getElementsByName("Quantity");
+        var Price = document.getElementsByName("Price");
+
+
+
+        var DetailsValue = [];
+        for (var i = 0; i < Id.length; i++) {
+
+            DetailsValue.push({
+                Price: Price[i].value,
+
+                ProductId: Id[i].value,
+                Qunatity: Quantity[i].value,
+
+            });
+        }
+        console.log(DetailsValue);
+        $.ajax({
+            url: "/Order/CreateOrder",
+            type: "POST",
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: {
+
+                OrderDetails: DetailsValue,
+                CustomerName: UserName,
+
+                Town: Town,
+                Phone: Phone,
+                Email: Email,
+
+
+
+            },
+            success: function (result) {
+
+                if (result == true) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Thanks For Order!Enjoy Shooping!',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = "/EcommerceHome/Index";
+
+                        }
+                    })
+
+                }
+
+                else {
+                    alert("Data Saved Failed");
+                }
+
+            },
+            error: function () {
+                alert('Something went wrong!');
+            }
+
+        });
+
+
+
+    }
+
+
+
+</script>

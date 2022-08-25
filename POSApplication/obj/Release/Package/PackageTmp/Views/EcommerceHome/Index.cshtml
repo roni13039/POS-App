@@ -1,0 +1,327 @@
+﻿ 
+@model dynamic  
+@{
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+}
+@*img {
+  border-radius: 50%;
+}*@
+
+<section id="home-section" class="hero">
+    <div class="home-slider owl-carousel d-flex align-self-stretch">
+        
+        @foreach (var item in Model.SliderData)
+        {
+
+          <div class="slider-item" style="background-image: url(@Url.Content(item.ImageURL)); overflow-x:hidden;">
+            @*<div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                    <div class="col-md-12 ftco-animate text-center">
+
+                        <p><a href="#" class="btn btn-primary clearsession">View Details</a></p>
+                        <p class="btn btn-primary clearsession">View Details</p>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+        }
+    </div>
+</section>
+<section class="ftco-section categoryList">
+    <div class="container">
+        <div class="row no-gutters ftco-services">
+
+@foreach (var item in Model.categoryData)
+{
+
+
+    <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4 btn btn-light" onclick="GetproductsByCategoryId(@item.Id)">
+            <div class="active d-flex justify-content-center align-items-center mb-2">
+                <img src="@Url.Content(@item.ImageURL)" width="180" height="120" style="border-radius:50%"/>
+             
+                   @*<span class="flaticon-shipped"></span>*@
+            </div>
+            <div class="media-body">
+                <h3 class="heading">@item.CategoryName</h3>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+        </div>
+    </div>
+</section>
+
+
+
+@*<section class="ftco-section ftco-category ftco-no-pt latestproductList">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 order-md-last align-items-stretch d-flex">
+                        <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(/Content/EcommerceContent/images/category.jpg);">
+                            <div class="text text-center">
+                                <h2>Latest Products</h2>
+                                <p>Order First get first</p>
+                                <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(/Content/EcommerceContent/images/category-1.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="#">Table</a></h2>
+                            </div>
+                        </div>
+                        <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(/Content/EcommerceContent/images/category-2.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="#">Sofa</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(/Content/EcommerceContent/images/category-3.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="#">AC</a></h2>
+                    </div>
+                </div>
+                <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(/Content/EcommerceContent/images/category-4.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="#">CC Camera</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+
+
+
+
+    <div id="productlist">
+
+    </div>
+
+    
+
+
+
+@*<section class="ftco-section testimony-section CustomerReview">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+
+                <h2 class="mb-4">Our satisfied customer says</h2>
+                <p>Accross the country we beleive in Service</p>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel">
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/EcommerceContent/images/person_1.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line"> You are easy to work with and provide scientifically sound, reliable service at a reasonable price.</p>
+                                <p class="name">Sabid Rahman</p>
+                                <span class="position">Software Developer | SEO Analyst</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/EcommerceContent/images/person_2.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line"> You are easy to work with and provide scientifically sound, reliable service at a reasonable price.</p>
+                                <p class="name">Talukder Rony</p>
+                                <span class="position">Software Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/EcommerceContent/images/person_3.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line"> You are easy to work with and provide scientifically sound, reliable service at a reasonable price.</p>
+                                <p class="name">Elias Alom</p>
+                                <span class="position">Web Design & Developer | SEO Analyst</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/EcommerceContent/images/person_1.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line"> You are easy to work with and provide scientifically sound, reliable service at a reasonable price.</p>
+                                <p class="name">Sabid Rahman</p>
+                                <span class="position">Software Developer | SEO Analyst</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/EcommerceContent/images/person_2.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line"> You are easy to work with and provide scientifically sound, reliable service at a reasonable price.</p>
+                                <p class="name">Talukder Rony</p>
+                                <span class="position">Software Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<script type="text/javascript">
+
+
+    $('.clearsession').click(function(){
+        alert("pk");
+        sessionStorage.clear();
+    
+    });
+      // Generate Patial View
+        function GetproductsByCategoryId(id,categoreName)
+        {
+          
+         
+
+            $.ajax({
+                url: "/EccomerceProduct/getProductByCategoryId",
+                type: "POST",
+                dataType: 'html',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    Id: id
+
+                },
+                success: function (result)
+                {
+                    console.log(result);
+                   
+                    $('#home-section').hide();
+                    $('.categoryList').hide();
+                    $('.latestproductList').hide();
+                    $('.CustomerReview').hide();
+                    
+                    
+                    $('#productlist').html(result);
+                    $(window).scrollTop(0);
+                },
+                error: function () {
+                    alert('Something went wrong!');
+                }
+
+            });
+
+
+
+        }
+
+      
+  
+        // Add To Cart
+
+
+        var count=0;
+        var arr=[];
+        function  AddToBag(id)
+        {
+            //get item count from session
+            var Checkcount = JSON.parse(sessionStorage.getItem("CartData"));//no brackets
+         
+            console.log(Checkcount);
+          
+            if (Checkcount!=null)
+            {
+               
+             
+            
+
+             
+                var storedArray = JSON.parse(sessionStorage.getItem("CartData"));//no brackets
+                console.log(storedArray);
+                ////var cartarra=  sessionStorage.getItem("CartData");
+
+             
+
+
+
+                storedArray.push(id);
+            
+              
+
+                window.sessionStorage.setItem("CartData", JSON.stringify(storedArray));
+                //sessionStorage.setItem("Count", JSON.stringify(count));
+                console.log(storedArray.length);
+                alert(Checkcount);
+
+                $('#cartItem').text(storedArray.length);
+          
+          
+                //$.session.set("CartCollection", arr);
+        
+               
+            }
+            else{
+               
+                count=count+1;
+                arr.push(id)
+             
+          
+          
+              
+                //sessionStorage.setItem("Count", JSON.stringify(count));
+                window.sessionStorage.setItem("CartData", JSON.stringify(arr));
+                alert(arr.length)
+
+                $('#cartItem').text(arr.length);
+
+            }
+           
+
+        }
+
+        // click on cart from layout page
+
+   
+
+
+    // click on cart from layout page
+
+   
+
+
+
+</script>

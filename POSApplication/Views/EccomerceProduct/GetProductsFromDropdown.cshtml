@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "GetProductsFromDropdown";
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+}
+
+@model IEnumerable<POSApplication.Models.Product>
+
+<div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <span class="subheading">Featured Products of  @ViewBag.CategoryName</span>
+            <h2 class="mb-2">Our Products</h2>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                <div class="product">
+                    
+                        <a href="#" class="img-prod" align="center">
+                            <img class="img-fluid" src="@Url.Content(@item.ImageURL)" style="height:150px; width:200px;" alt="Products">
+                            @*<span class="status">30%</span>*@
+                            <div class="overlay"></div>
+                        </a>
+                   
+                    
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <p style="font-size:20px;"><a href="#" style="color:black;">@item.ProductName</a></p>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                @*<p class="price"><span class="mr-2 price-dc">Tk.@item.SalesPrice</span><span class="price-sale">Tk80.00</span></p>*@
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1" onclick="AddToBag(@item.Id)">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@*<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+<script src="~/Content/EcommerceContent/js/jquery.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="~/Content/EcommerceContent/js/popper.min.js"></script>
+<script src="~/Content/EcommerceContent/js/bootstrap.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.easing.1.3.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.waypoints.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.stellar.min.js"></script>
+<script src="~/Content/EcommerceContent/js/owl.carousel.min.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.magnific-popup.min.js"></script>
+<script src="~/Content/EcommerceContent/js/aos.js"></script>
+<script src="~/Content/EcommerceContent/js/jquery.animateNumber.min.js"></script>
+<script src="~/Content/EcommerceContent/js/bootstrap-datepicker.js"></script>
+<script src="~/Content/EcommerceContent/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="~/Content/EcommerceContent/js/google-map.js"></script>
+<script src="~/Content/EcommerceContent/js/main.js"></script>*@
+
+

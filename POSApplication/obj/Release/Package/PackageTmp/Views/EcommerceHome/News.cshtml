@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+}
+
+@*@model IEnumerable<POSApplication.Models.News>*@
+
+<section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(@item.ImageURL);height:500px; margin-top:110px;">
+            </div>
+            <div class="col-md-6 py-5 wrap-about pb-md-5 ftco-animate">
+                <div class="heading-section-bold mb-4 mt-md-5">
+                    <div class="ml-md-0">
+                        <h2 class="mb-4">@item.Name</h2>
+                    </div>
+                </div>
+                <div class="pb-md-5">
+                    <p>@item.Description</p>
+                    
+                    @*<p><a href="@Url.Action("Index", "EcommerceHome")" class="btn btn-primary">Home</a></p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <br />
+    <br />
+    <br />
+</section>
+
+
+
+

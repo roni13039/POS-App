@@ -1,0 +1,165 @@
+﻿@model IEnumerable<POSApplication.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Products List</h4></div>
+    <div class="panel-body">
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@
+            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-success" })
+        </p><br>
+        <div class="table-responsive">
+            <table id="datatable" class="table table-bordered datatable-show-all ppp">
+                <thead>
+                    <tr class="bg-blue">
+                        <th class="col-xs-1">
+                            @Html.Label("SL No")
+                        </th>
+                        <th>
+                            @Html.Label("Product Category")
+                        </th>
+                        <th>
+                            @Html.Label("Product Name")
+                        </th>
+                        <th>
+                            @Html.Label("Product Code")
+                        </th>
+
+                        <th class="col-xs-2">
+                            @Html.DisplayName("Action")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = 1;
+
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @index
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductCode)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink(" ", "Edit", new { Id = item.Id }, new { @class = "btn btn-xs-info  glyphicon glyphicon-pencil", @title = "Edit" })
+
+                                <a class="btn btn-xs labeled btn-danger" title="Delete" href="javascript:deleteFunction(@item.Id)"><i class="glyphicon glyphicon-remove"></i></a>
+                            </td>
+                        </tr>
+                        index++;
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    #datatable_length 
+    {
+    margin-top:15px;
+    
+    }
+</style>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#datatable').DataTable({
+
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+
+            });
+        });
+
+        function deleteFunction(Id) {
+
+            Swal.fire({
+                position: 'top',
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "/Products/DeleteItem",
+                        type: "post",
+                        data: {
+                            Id: Id
+                        },
+                        dataType: "json",
+
+                        success: function (flag) {
+                            console.log(flag);
+
+                            if (flag.flag == true) {
+                                Swal.fire({
+                                    position: 'top',
+                                    icon: 'success',
+                                    title: 'Deleted Successfully!',
+                                    showConfirmButton: true,
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location = "/Products/Index";
+
+                                    }
+                                })
+
+                            } else {
+                                alert(flag.message);
+                            }
+                        },
+
+                        error: function (xhr) {
+                            alert('error');
+
+                        }
+
+
+                    });
+
+                }
+            })
+
+
+        }
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

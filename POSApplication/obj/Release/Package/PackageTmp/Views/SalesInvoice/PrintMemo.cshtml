@@ -1,0 +1,12 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "PrintMemo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+</div>
+

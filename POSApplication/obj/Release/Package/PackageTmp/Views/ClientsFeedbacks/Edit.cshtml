@@ -1,0 +1,269 @@
+﻿@model POSApplication.Models.ClientsFeedback
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title">Clients Update</h5>
+    </div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*<h4>ClientsFeedback</h4>
+                <hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.Label("Clients Name", new { @class = "control-label col-md-2" })
+                    @*@Html.LabelFor(model => model.ClientsName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-10">
+                        <input type="hidden" id="UserId" value="@Model.Id" />
+                        @Html.EditorFor(model => model.ClientsName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ClientsName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>*@
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+<div class="form-group" style="padding-top:20px;" @*id="DIV_upload"*@>
+    @*@using (Html.BeginForm("ImageUpdate", "ClientsFeedbacks", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myform" }))
+    {*@
+        <input type="hidden" value="@Model.Id" id="UId" name="UId" />
+        <div class="col-lg-12">
+            @*<div class="col-lg-3">
+                <input type="file" name="postedFiles" id="postedFiles" />
+            </div>*@
+            <div class="col-lg-4">
+                @if (ViewBag.Images != null)
+                {
+                    <div class="form-group" id="images">
+                        @foreach (var i in ViewBag.Images)
+                        {
+                            <div style="width:100px;" class="img-wrap">
+                                @*<span class="close deleteImage" id="deleteImage">&times;</span>*@
+                                @*<img src="@i.ImageURL.TrimStart('~')" width="100" height="100" />*@
+                                <img src="@i.ImageURL.TrimStart('~')" width="100" height="100" id="demo" class="demo" />
+                                @*<input type="hidden" value="@i.Id" id="@i.Id" name="DeleteUserImage" />*@
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <input type="submit" value="Upload" style="visibility:hidden;" id="submit" class="btn-primary" />
+    @*}*@
+</div>
+
+
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <button type="button" class="btn btn-success" id="saveState">Save <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Plugins/Image Zoom/jquery.bighover.js"></script>
+    <script type="text/javascript">
+
+
+
+        //-- global var---
+        var deletedItems = [];
+
+
+
+
+        $(document).ready(function () {
+
+            $(".select2").select2();
+
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            }
+
+            $('.demo').bighover({
+                position: 'right',
+                width: "200",
+                height: "200"
+            });
+
+        });
+
+
+        $('#saveState').click(function () {
+
+            if ($.trim($('#ClientsName').val()) === "") {
+                alert('Clients Name required');
+                $('#ClientsName').focus();
+            }
+
+            else if ($.trim($('#Description').val()) === "") {
+                alert('Description required');
+                $('#Description').focus();
+            }
+
+            else {
+                SaveUserData();
+            }
+            
+        });
+
+        function SaveUserData() {
+
+            var Id = $('#UserId').val();
+            var ClientsName = $('#ClientsName').val();
+            var Description = $('#Description').val();
+
+            sliderimage = JSON.stringify({
+                Id: Id,
+                ClientsName: ClientsName,
+                Description: Description,
+            });
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: '/ClientsFeedbacks/UpdateData',
+                data: sliderimage,
+                success: function (result) {
+                    console.log(result);
+                    $("#saveState").removeAttr("disabled");
+                    if (result.flag == true) {
+
+                        $('#submit').click();
+
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: 'Updated Successfully!',
+                            showConfirmButton: true,
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "/ClientsFeedbacks/Index";
+                            }
+                        })
+
+
+                    }
+
+                    else {
+                        alert(result.message);
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                    $("#saveState").removeAttr("disabled");
+                }
+            });
+
+        }
+
+
+
+        //$('.deleteImage').click(function () {
+        //    var retVal = confirm("Do you want to delete this image ?");
+        //    if (retVal == true) {
+        //        var row = $(this).closest('div');
+        //        var id = row.find('input[name=DeleteUserImage]').val();
+        //        //alert(id);
+
+        //        $.ajax({
+        //            url: "/SliderImages/DeleteImage",
+        //            type: "post",
+        //            data: {
+        //                Id: id
+        //            },
+        //            dataType: "json",
+
+        //            success: function (flag) {
+        //                console.log(flag);
+
+        //                if (flag.flag == true) {
+
+        //                    Swal.fire({
+        //                        position: 'top',
+        //                        icon: 'success',
+        //                        title: 'Deleted Successfully!',
+        //                        showConfirmButton: true,
+        //                    }).then((result) => {
+        //                        if (result.value) {
+
+        //                            location.reload(true);
+        //                        }
+        //                    })
+
+        //                }
+        //                else {
+        //                    alert(flag.message);
+        //                }
+
+        //            },
+
+        //            error: function (xhr) {
+        //                console.log(xhr)
+        //                alert('error');
+
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        return false;
+        //    }
+
+        //    //window.confirm("Do you want  to delete the image!");
+        //});
+
+
+    </script>
+}

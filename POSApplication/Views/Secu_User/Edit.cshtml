@@ -1,0 +1,668 @@
+﻿@model POSApplication.Models.Secu_User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var IsAdmin = Convert.ToBoolean(Session["IsAdmin"].ToString());
+}
+
+
+<style>
+    /*.scrolling {
+        width: 100%;
+        height: 350px;
+        /*border: 13px solid #bed5cd;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }*/
+
+    .img-wrap {
+        position: relative;
+        display: inline-block;
+        border: 1px grey solid;
+        font-size: 0;
+    }
+
+        .img-wrap .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+            background-color: #FFF;
+            padding: 5px 2px 2px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: .2;
+            text-align: center;
+            font-size: 22px;
+            line-height: 10px;
+            border-radius: 50%;
+        }
+
+        .img-wrap:hover .close {
+            opacity: 1;
+        }
+</style>
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title">User Information</h5>
+    </div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                <input type="hidden" id="UserId" value="@Model.Id" />
+                                @*@if (Model.IsAdmin == true)
+                                    {*@
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                @*}
+                                    else
+                                    {
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    }*@
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.UserStatus, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @if (IsAdmin)
+                                {
+                                    @Html.DropDownList("UserStatus", null, "", htmlAttributes: new { @class = "form-control select2 input-xs" })
+                                }
+                                else
+                                {
+                                    @Html.DropDownList("UserStatus", null, "", htmlAttributes: new { @class = "form-control select2 input-xs", @disabled = "disabled" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.UserStatus, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.LastLoginDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBox("LastLoginDate", null, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.LastLoginDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UserFullName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @if (IsAdmin)
+                                {
+                                    @Html.DropDownList("RoleId", null, "", htmlAttributes: new { @class = "form-control select2 input-xs" })
+                                }
+                                else
+                                {
+                                    @Html.DropDownList("RoleId", null, "", htmlAttributes: new { @class = "form-control select2 input-xs", @disabled = "disabled" })
+                                }
+                                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-xs">
+                            @if (IsAdmin)
+                            {
+                                @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.CheckBoxFor(model => model.IsAdmin, new { @class = "IsAdmin" })
+                                    <button class="btn btn-primary pull-right" id="changePassword">Change Password</button>
+                                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.CheckBoxFor(model => model.IsAdmin, new { @class = "IsAdmin", @hidden= "hidden" })
+                            }
+                        </div>
+                    </div>
+         
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<div class="form-group" style="padding-top:20px;" id="DIV_upload">
+    @using (Html.BeginForm("ImageUploadForUpdate", "Secu_User", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myform" }))
+    {
+        <input type="hidden" value="@Model.Id" id="UId" name="UId" />
+        // <input type="file" name="postedFiles" id="postedFiles" multiple="multiple"/>
+        @*if (ViewBag.ShowUploadBtn)
+            {
+                <div class="col-lg-12">
+                    <div class="col-lg-2"><select id="ImageType" name="ImageType" class="select2"><option value="1">User Photo</option><option value="2">Signature</option></select></div>
+                    <div class="col-lg-4">
+                        <input type="file" name="postedFiles" id="postedFiles" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <input type="file" name="postedFiles" id="postedFiles" style="visibility:hidden;" />
+            }*@
+
+        <div class="col-lg-12">
+
+            <div class="col-lg-3">
+                <input type="file" name="postedFiles" id="postedFiles" />
+            </div>
+            <div class="col-lg-2">
+                        @if (ViewBag.Images != null)
+                        {
+                            <div class="form-group" id="images">
+                                @foreach (var i in ViewBag.Images)
+                                {
+                                    <div style="width:100px;" class="img-wrap">
+                                        <span class="close deleteImage" id="deleteImage">&times;</span>
+                                        @*<img src="@i.ImageURL.TrimStart('~')" width="100" height="100" />*@
+                                        <img src="@i.ImageURL.TrimStart('~')" width="100" height="100" id="demo" class="demo" />
+                                        <input type="hidden" value="@i.Id" id="@i.Id" name="DeleteUserImage" />
+                                    </div>
+
+                                }
+                            </div>
+                        }
+            </div>
+        </div>
+
+        @*<div class="col-lg-12">
+                <input type="hidden" value="" id="UId" name="UId" />
+                <div class="col-lg-2"><select id="ImageType" name="ImageType" class="select2"><option value="1">User Photo</option><option value="2">Signature</option></select></div>
+                <div class="col-lg-4">
+                    <input type="file" name="postedFiles" id="postedFiles" />
+                </div>
+            </div>*@
+
+        <input type="submit" value="Upload" style="visibility:hidden;" id="submit" class="btn-primary" />
+    }
+</div>
+
+
+
+<div class="panel panel-primary panel-bordered" id="DIV_Password">
+    <div class="panel-body" >
+        <div class="table-responsive">
+            <table class="table table-bordered table-xxs">
+                <thead>
+                    <tr class="bg-primary-400">
+                        <th style="min-width:180px;" colspan="12">Change Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-lg-2">Password</td>
+                        <td class="col-lg-5"><input type="password" id="Password" name="Password" class="form-control input-xs" /></td>
+                        <td class="col-lg-5" rowspan="2"><button class="btn btn-primary btn-xs" id="updatePassword">Update Password</button></td>
+                        @*<td class="col-lg-5">&nbsp;</td>*@
+                    </tr>
+                    <tr>
+                        <td class="col-lg-2">Re-Type Password</td>
+                        <td class="col-lg-5"><input type="password" id="RePassword" name="RePassword" class="form-control input-xs" /></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <button type="button" class="btn btn-success" id="saveState">Save <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Plugins/Image Zoom/jquery.bighover.js"></script>
+
+    <script type="text/javascript">
+        
+        $('#DIV_Password').hide();
+
+        //-- global var---
+        var deletedItems = [];
+
+        function RebindDatePicker() {
+            $('.datepicker').datepicker("destroy");
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                todayHighlight: true,
+                todayBtn: true,
+                autoclose: true
+            });
+
+        }
+
+        //disabled right click on this page
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        $(document).ready(function () {
+            //$('body').addClass("sidebar-xs");
+            $(".select2").select2();
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                todayHighlight: true,
+                todayBtn: true,
+                autoclose: true
+            });
+            
+            
+
+            // jquery validator bug fix using moment
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            }
+
+            //$('.demo').bighover();
+            $('.demo').bighover({
+                position: 'right',
+                width: "200",
+                height: "200"
+            });
+
+            
+
+            @*var check = "@ViewBag.ShowUploadBtn";
+
+            if(Boolean(check))
+            {
+                $('#DIV_upload').show();
+            }
+            else {
+                alert("hi");
+                $('#DIV_upload').hide();
+
+            }*@
+
+
+            //LoadUsersBuyers();
+        });
+
+
+      
+
+        $('#changePassword').click(function (e) {
+
+            e.preventDefault();
+            $('#DIV_Password').toggle();
+        });
+
+        $('#RePassword').change(function () {
+            var passs = $('#Password').val();
+            var rePass = $(this).val();
+
+            if (passs != rePass) {
+                alert("Password doesn't match!");
+                $('#RePassword').val("");
+            }
+        });
+
+        $('#updatePassword').click(function (e) {
+
+            $("#updatePassword").attr("disabled", "disabled");
+            var userId = $('#UserId').val();
+            var pass = $('#Password').val();
+
+            if ($.trim($('#Password').val()) === "") {
+                alert('Password required');
+                $('#Password').focus();
+            }
+            else if ($.trim($('#Password').val()) != "" && $('#RePassword').val == "") {
+                alert("Please confirm the password");
+            }
+            else {
+                $.ajax({
+                    type: "post",
+                    url: "/Secu_User/ChangePassword",
+                    datatype: "json",
+                    data: { userid: userId, pass: pass },
+                    traditional: true,
+                    success: function (result) {
+                        $("#updatePassword").removeAttr("disabled");
+                        if (result.flag == true) {
+                            alert("Password changed successfully!");
+                            $('#Password').val("");
+                            $('#RePassword').val("");
+                            $('#DIV_Password').hide();
+                        }
+                        else {
+                            alert(result.message);
+                        }
+                    }
+                });
+            }
+
+            $("#updatePassword").removeAttr("disabled");
+
+        });
+
+
+        $('#btnAddRow').click(function () {
+            AddNewRow();
+        });
+
+        function AddNewRow() {
+            var newRow = jQuery('<tr><td>'
+                + '<input value="' + 0 + '" type="hidden" name="UserBuyerDetId" class="form-control UserBuyerDetId"/>'
+                + '<select name="BuyerInfoId" class="BuyerInfoId form-control select2 input-xs"><option value=""></option></select></td>'
+                + '<td><button onclick="RemoveOrderRow(this)" type="button" class="btn  text-warning-600 btn-flat btn-icon btn-rounded"><i class="icon-cross"></i></button></td></tr>');
+
+            jQuery('table.OrderItemTable tbody').find('tr:last').before(newRow);
+
+
+            $.ajax({
+                type: "post",
+                url: "/Secu_User/GetBuyerNames",
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var selOptions = "<select>";
+                    selOptions = selOptions + '<option value=""></option>';
+                    for (var i = 0; i < data.length; i++) {
+                        selOptions = selOptions + '<option value=' + data[i].Id + '>' + data[i].Name + '</option>';
+                    }
+                    selOptions = selOptions + '</select>';
+
+                    jQuery('table.OrderItemTable tbody').find('tr:last').prev().find("select.BuyerInfoId").html(selOptions);
+                }
+            });
+
+
+            $(".select2").select2();
+
+            RebindDatePicker();
+        }
+
+
+        //function RemoveOrderRow(e) {
+        //    $(e).parent().parent().remove();
+        //}
+
+
+        function RemoveOrderRow(e) {
+
+            if (confirm('Do you really want to delete?') == false) {
+                return;
+            }
+
+            var currRowIndex = $(e).closest('tr').index() + 1;
+
+
+            var id = $('#OrderTable tr').eq(currRowIndex).find("input.UserBuyerDetId").val();
+
+            if (id > 0) {
+
+                deletedItems.push(id);
+                $(e).parent().parent().remove();
+            }
+            else {
+                $(e).parent().parent().remove();
+            }
+
+        }
+
+        $('#Phone').change(function () {
+            var Phn = $('#Phone').val();
+            var valid = /\(?([0-9]{3})\)?([ .-]?)([0-9]{4})\2([0-9]{4})/.test(Phn);
+            if (!valid || Phn.length != 11) {
+                alert('Please enter valid Phone Number!');
+            }
+        });
+
+
+        $('#saveState').click(function () {
+
+            if ($.trim($('#UserName').val()) === "") {
+                alert('UserName required');
+                $('#UserName').focus();
+            }
+            else if ($.trim($('#UserStatus').val()) === "") {
+                alert('User Status required');
+                $('#UserStatus').focus();
+            }
+            else if ($.trim($('#UserFullName').val()) === "") {
+                alert('Full Name required');
+                $('#UserFullName').focus();
+            }
+            else if ($.trim($('#Phone').val()) === "") {
+                alert('Phone No. required');
+                $('#Phone').focus();
+            }
+            else if ($('#Phone').val().length != 11) {
+                alert('Please enter valid Phone Number!');
+                $('#Phone').focus();
+            }
+            else if ($.trim($('#RoleId').val()) === "") {
+                alert('Role required');
+                $('#RoleId').focus();
+            }
+                //else if ($.trim($('#Password').val()) === "") {
+                //    alert('Password required');
+                //    $('#Password').focus();
+                //}
+            else {
+                SaveUserData();
+            }
+
+        });
+
+        function SaveUserData() {
+
+            $("#saveState").attr("disabled", "disabled");
+
+            var Id = $('#UserId').val();
+            var UserName = $.trim($('#UserName').val());
+            var UserStatus = $('#UserStatus').val();
+            var UserFullName = $('#UserFullName').val();
+            var Phone = $('#Phone').val();
+            var Email = $('#Email').val();
+            var TeamId = $('#TeamId').val();
+            var Password = $('#Password').val();
+          
+            var RoleId = $('#RoleId').val();
+            var IsAdmin = 0;
+            if ($('#IsAdmin').is(":checked")) {
+                IsAdmin = 1;
+            }
+            else {
+                IsAdmin = 0;
+            }
+
+
+
+            Secu_Users = JSON.stringify({
+                Id: Id,
+                UserName: UserName,
+                UserStatus: UserStatus,
+                UserFullName: UserFullName,
+                Phone: Phone,
+                Email: Email,
+                Password: Password,
+                RoleId: RoleId,
+                IsAdmin: IsAdmin,
+             
+                DelItems: deletedItems
+            });
+
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: '/Secu_User/UpdateUser',
+                data: Secu_Users,
+                success: function (result) {
+                    console.log(result);
+                    $("#saveState").removeAttr("disabled");
+                    if (result.flag == true) {
+                        //if (result.isRedirect)
+                        //{
+                        //    alert("Record save successfully!");
+                        //    window.location = "/Authentication/Login";
+                        //}
+                        //else {
+                        //    $('#submit').click();
+                        //    alert("Record save successfully!");
+                        //}
+
+                        $('#submit').click();
+
+
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: 'Updated Successfully!',
+                            showConfirmButton: true,
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "/Secu_Role/Index";
+                            }
+                        })
+
+
+                    }
+
+                    else {
+                        alert(result.message);
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                    $("#saveState").removeAttr("disabled");
+                }
+            });
+
+        }
+
+
+
+        $('.deleteImage').click(function () {
+            var retVal = confirm("Do you want to delete this image ?");
+            if (retVal == true) {
+                var row = $(this).closest('div');
+                var id = row.find('input[name=DeleteUserImage]').val();
+                //alert(id);
+
+                $.ajax({
+                    url: "/Secu_User/DeleteImage",
+                    type: "post",
+                    data: {
+                        Id: id
+                    },
+                    dataType: "json",
+
+                    success: function (flag) {
+                        console.log(flag);
+
+                        if (flag.flag == true) {
+
+                            Swal.fire({
+                                position: 'top',
+                                icon: 'success',
+                                title: 'Deleted Successfully!',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    //window.location = "/Secu_Role/Index";
+                                    location.reload(true);
+                                }
+                            })
+                            
+                        }
+                        else {
+                            alert(flag.message);
+                        }
+
+                    },
+
+                    error: function (xhr) {
+                        console.log(xhr)
+                        alert('error');
+
+                    }
+                });
+            }
+            else {
+                return false;
+            }
+
+            //window.confirm("Do you want  to delete the image!");
+        });
+
+
+    </script>
+}

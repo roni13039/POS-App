@@ -1,0 +1,141 @@
+﻿@model IEnumerable<POSApplication.Models.CompanyInformation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>Company Information</b></div>
+    <div class="panel-body">
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@
+            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-success" })
+        </p><br>
+        <table id="datatable" class="table table-responsive table-bordered datatable-show-all ppp">
+            <thead>
+                <tr class="bg-blue">
+                    <th class="col-sm-1">
+                        @Html.Label("SL No")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int index = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @index
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
+                            @Html.ActionLink(" ", "Edit", new { Id = item.Id }, new { @class = "btn btn-xs-info  glyphicon glyphicon-pencil", @title = "Edit" })
+                            @*@Html.ActionLink(" ", "Detail", new { Id = item.Id }, new { @class = "btn btn-xs-info glyphicon  glyphicon-file", @title = "Detail" })*@
+                            <a class="btn btn-xs labeled btn-danger" title="Delete" href="javascript:deleteFunction(@item.Id)"><i class="glyphicon glyphicon-remove"></i></a>
+                        </td>
+                    </tr>
+                    index++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script>
+
+        $("#datatable").DataTable();
+
+        function deleteFunction(Id) {
+            var Con = confirm("are you sure want to delete this ?");
+            if (Con == true) {
+                $.ajax({
+                    url: "/CompanyInformations/DeleteItem",
+                    type: "post",
+                    data: {
+                        Id: Id
+                    },
+                    dataType: "json",
+
+                    success: function (flag) {
+                        console.log(flag);
+
+                        if (flag.flag == true) {
+                            Swal.fire({
+                                position: 'top',
+                                icon: 'success',
+                                title: 'Delete Successfully!',
+                                showConfirmButton: true,
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location = "/CompanyInformations/Edit/1";
+                                }
+                            })
+                            
+                        } else {
+                            alert(flag.message);
+                        }
+                    },
+
+                    error: function (xhr) {
+                        alert('error');
+
+                    }
+
+
+                });
+            }
+
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+

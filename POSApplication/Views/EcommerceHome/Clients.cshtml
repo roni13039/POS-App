@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <span class="subheading">Accross the country we beleive in Service</span>
+            <h2 class="mb-2">Our satisfied Clients says</h2>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                <div class="product">
+                    <a href="#" class="img-prod" align="center">
+                        <p class="name">@item.ClientsName</p>
+
+                        <img class="img-fluid" src="@Url.Content(@item.ImageURL)" width="120" height="80" alt="Colorlib Template">
+                        
+                        @*<span class="status">30%</span>*@
+                        <div class="overlay"></div>
+                    </a>
+                    <p class="mb-5 pl-4 line text-center"> @item.Description</p>
+                    
+                    </div>
+            </div>
+            @*</div>*@
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+
+<div class="row" style="padding-left:20px">
+    <div class="column">
+        <img src="~/Content/EcommerceContent/images/category-1.jpg" alt="Snow" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="~/Content/EcommerceContent/images/category-2.jpg" alt="Forest" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="~/Content/EcommerceContent/images/category-1.jpg" alt="Mountains" style="width:100%">
+    </div>
+</div>*@
+

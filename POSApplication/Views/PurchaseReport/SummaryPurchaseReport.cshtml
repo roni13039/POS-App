@@ -1,0 +1,13 @@
+﻿
+@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "SummaryPurchaseReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container col-lg-6" style="height:30%;">
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+</div>
+

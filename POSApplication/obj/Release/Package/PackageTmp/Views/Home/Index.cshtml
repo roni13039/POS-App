@@ -1,0 +1,63 @@
+﻿<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>@ViewBag.Profit <sup style="font-size: 20px"></sup>BDT</h3>
+                <p>Profit</p>
+                <p><b class="bg-black">From @DateTime.Now.AddDays(-31).ToShortDateString() To @DateTime.Now.ToShortDateString()</b></p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-pricetag-outline"></i>
+            </div>
+            <a href="@Url.Action("CreateProfitReport","ProfitReport")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>@ViewBag.ExpireProducts<sup style="font-size: 20px"></sup></h3>
+                <p>Expire Products</p>
+                <p><b class="bg-black">From @DateTime.Now.AddDays(-31).ToShortDateString() To @DateTime.Now.ToShortDateString()</b></p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-cart-outline"></i>
+            </div>
+            <a href="@Url.Action("CreateExpireProductReport", "PurchaseReport")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>@ViewBag.Stock  </h3>
+                <p>(BDT.) Stock</p>
+                <p><b class="bg-black">Total Stock</b></p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-cash"></i>
+            </div>
+            <a href="@Url.Action("GetStock","StockReport")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>@ViewBag.SalesAmount <sup style="font-size: 20px"></sup>BDT</h3>
+                <p>Sales Amount</p>
+                <p><b class="bg-black">From @DateTime.Now.AddDays(-31).ToShortDateString() To @DateTime.Now.ToShortDateString()</b></p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="@Url.Action("CreateSalesReport","SalesReport")" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+</div>
+

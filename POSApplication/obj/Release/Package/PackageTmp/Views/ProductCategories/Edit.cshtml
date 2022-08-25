@@ -1,0 +1,262 @@
+﻿@model POSApplication.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title">Update Product Categories</h5>
+    </div>
+    <div class="panel-body">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*<h4>ProductCategory</h4>
+                    <hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                @*<input type="hidden" id="Message" value="@ViewBag.Message">*@
+                <input type="hidden" id="UserId" value="@Model.Id" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                        <input type="submit" value="Update" class="btn btn-success" />
+                    </div>
+                </div>*@
+            </div>
+        }
+    </div>
+</div>
+
+@*<div class="form-group" style="padding-top:20px;" id="DIV_upload">
+    
+    <input type="hidden" value="@Model.Id" id="UId" name="UId" />
+    <div class="col-lg-12">
+        
+    
+        <div class="col-lg-3">
+            <input type="file" name="postedFiles" id="FileUpload1" />
+        </div>
+        <div class="col-lg-2">
+            @if (ViewBag.Images != null)
+            {
+                <div class="form-group" id="images">
+                    @foreach (var i in ViewBag.Images)
+                    {
+                        <div style="width:100px;" class="img-wrap">
+                          
+                            <img src="@i.ImageURL.TrimStart('~')" width="100" height="100" id="demo" class="demo" />
+                            <input type="hidden" value="@i.Id" id="@i.Id" name="DeleteUserImage" />
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+</div>*@
+
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <button type="button" class="btn btn-success" id="saveState">Save <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Plugins/Image Zoom/jquery.bighover.js"></script>
+    <script type="text/javascript">
+
+
+
+        //-- global var---
+        var deletedItems = [];
+
+
+
+
+        $(document).ready(function () {
+
+            //$(".select2").select2();
+
+            //$.validator.methods.date = function (value, element) {
+            //    return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            //}
+
+            //$('.demo').bighover({
+            //    position: 'right',
+            //    width: "200",
+            //    height: "200"
+            //});
+
+        });
+
+
+        $('#saveState').click(function () {
+
+            if ($.trim($('#CategoryName').val())== "")
+            {
+                alert('CategoryName required');
+                $('#CategoryName').focus();
+
+                return false;
+            }
+            else
+            {
+                UpdateData();
+            }
+            
+        });
+
+        function UpdateData() {
+
+
+            //var fileUpload = $("#FileUpload1").get(0);
+            //var files = fileUpload.files;
+
+            //// Create FormData object
+            //var fileData = new FormData();
+
+            //// Looping over all files and add it to FormData object
+            //for (var i = 0; i < files.length; i++) {
+            //    fileData.append(files[i].name, files[i]);
+            //}
+
+
+            var Id = $('#UserId').val();
+            var CategoryName = $('#CategoryName').val();
+
+            //fileData.append('Id', Id);
+            //fileData.append('CategoryName', CategoryName);
+
+            var data =
+                {
+                    Id: Id,
+                    CategoryName: CategoryName,
+                };
+
+            $.ajax({
+               contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            
+                type: 'POST',
+                url: '/ProductCategories/UpdateData',
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                    $("#saveState").removeAttr("disabled");
+                    if (result.flag == true)
+                    {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'success',
+                            title: 'Updated Successfully!',
+                            showConfirmButton: true,
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "/ProductCategories/Index";
+                            }
+                        })
+
+
+                    }
+
+                    else {
+                        alert(result.message);
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error: ' + textStatus + ' - ' + errorThrown);
+                    $("#saveState").removeAttr("disabled");
+                }
+            });
+
+        }
+
+
+
+        //$('.deleteImage').click(function () {
+        //    var retVal = confirm("Do you want to delete this image ?");
+        //    if (retVal == true) {
+        //        var row = $(this).closest('div');
+        //        var id = row.find('input[name=DeleteUserImage]').val();
+        //        //alert(id);
+
+        //        $.ajax({
+        //            url: "/ProductCategories/DeleteImage",
+        //            type: "post",
+        //            data: {
+        //                Id: id
+        //            },
+        //            dataType: "json",
+
+        //            success: function (flag) {
+        //                console.log(flag);
+
+        //                if (flag.flag == true) {
+
+        //                    Swal.fire({
+        //                        position: 'top',
+        //                        icon: 'success',
+        //                        title: 'Deleted Successfully!',
+        //                        showConfirmButton: true,
+        //                    }).then((result) => {
+        //                        if (result.value) {
+        //                            window.location = "/ProductCategories/Index";
+        //                            location.reload(true);
+        //                        }
+        //                    })
+
+        //                }
+        //                else {
+        //                    alert(flag.message);
+        //                }
+
+        //            },
+
+        //            error: function (xhr) {
+        //                console.log(xhr)
+        //                alert('error');
+
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        return false;
+        //    }
+
+        //    //window.confirm("Do you want  to delete the image!");
+        //});
+
+
+    </script>
+}

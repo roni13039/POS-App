@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BarcodeImageDS" targetNamespace="http://tempuri.org/BarcodeImageDS.xsd" xmlns:mstns="http://tempuri.org/BarcodeImageDS.xsd" xmlns="http://tempuri.org/BarcodeImageDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BarcodeImageDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BarcodeImageDS" msprop:Generator_UserDSName="BarcodeImageDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BarCodeDS" msprop:Generator_TableClassName="BarCodeDSDataTable" msprop:Generator_TableVarName="tableBarCodeDS" msprop:Generator_TablePropName="BarCodeDS" msprop:Generator_RowDeletingName="BarCodeDSRowDeleting" msprop:Generator_RowChangingName="BarCodeDSRowChanging" msprop:Generator_RowEvHandlerName="BarCodeDSRowChangeEventHandler" msprop:Generator_RowDeletedName="BarCodeDSRowDeleted" msprop:Generator_UserTableName="BarCodeDS" msprop:Generator_RowChangedName="BarCodeDSRowChanged" msprop:Generator_RowEvArgName="BarCodeDSRowChangeEvent" msprop:Generator_RowClassName="BarCodeDSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="image" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInTable="imageColumn" msprop:Generator_UserColumnName="image" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
