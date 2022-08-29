@@ -3883,7 +3883,6 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\pt\Microsoft.ReportViewer.Wi
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.csprojResolveAssemblyReference.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\RdlCompile.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\RdlCompile.compiled
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.dll

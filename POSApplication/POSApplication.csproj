@@ -339,6 +339,7 @@
       <DependentUpon>StockDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Accounts.cs" />
+    <Compile Include="ViewModel\BarcodeNumber.cs" />
     <Compile Include="ViewModel\CartData.cs" />
     <Compile Include="ViewModel\Profit.cs" />
     <Compile Include="ViewModel\VMCartProduct.cs" />

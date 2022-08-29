@@ -13,15 +13,11 @@
 <body>
     @using (Html.BeginForm("GenerateBarcode", "Barcode", FormMethod.Post))
     {
-        <input type="text" name="barcode" />
+        <input type="number" name="number" />
         <input type="submit" value="Generate Barcode" />
 
     }
     <hr />
 
-    @if (ViewBag.BarcodeImage != null)
-    {
-        <img src="@ViewBag.BarcodeImage" alt="" />
-    }
 </body>
 </html>

@@ -279,7 +279,7 @@ namespace POSApplication.ReportDataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class BarCodeDSDataTable : global::System.Data.TypedTableBase<BarCodeDSRow> {
             
-            private global::System.Data.DataColumn columnimage;
+            private global::System.Data.DataColumn columnnumber;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -316,9 +316,9 @@ namespace POSApplication.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn imageColumn {
+            public global::System.Data.DataColumn numberColumn {
                 get {
-                    return this.columnimage;
+                    return this.columnnumber;
                 }
             }
             
@@ -359,10 +359,10 @@ namespace POSApplication.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BarCodeDSRow AddBarCodeDSRow(byte[] image) {
+            public BarCodeDSRow AddBarCodeDSRow(string number) {
                 BarCodeDSRow rowBarCodeDSRow = ((BarCodeDSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        image};
+                        number};
                 rowBarCodeDSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBarCodeDSRow);
                 return rowBarCodeDSRow;
@@ -385,14 +385,14 @@ namespace POSApplication.ReportDataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnimage = base.Columns["image"];
+                this.columnnumber = base.Columns["number"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnimage = new global::System.Data.DataColumn("image", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnimage);
+                this.columnnumber = new global::System.Data.DataColumn("number", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumber);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -535,30 +535,30 @@ namespace POSApplication.ReportDataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] image {
+            public string number {
                 get {
                     try {
-                        return ((byte[])(this[this.tableBarCodeDS.imageColumn]));
+                        return ((string)(this[this.tableBarCodeDS.numberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'image\' in table \'BarCodeDS\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'number\' in table \'BarCodeDS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBarCodeDS.imageColumn] = value;
+                    this[this.tableBarCodeDS.numberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsimageNull() {
-                return this.IsNull(this.tableBarCodeDS.imageColumn);
+            public bool IsnumberNull() {
+                return this.IsNull(this.tableBarCodeDS.numberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetimageNull() {
-                this[this.tableBarCodeDS.imageColumn] = global::System.Convert.DBNull;
+            public void SetnumberNull() {
+                this[this.tableBarCodeDS.numberColumn] = global::System.Convert.DBNull;
             }
         }
         
