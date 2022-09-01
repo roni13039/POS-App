@@ -13,11 +13,11 @@
 <body>
     @using (Html.BeginForm("GenerateBarcode", "Barcode", FormMethod.Post))
     {
-        <input type="number" name="number" />
+        <input type="number" name="number" placeholder="Enter Barcode Quantity"/>
         <input type="submit" value="Generate Barcode" />
 
     }
-    <hr />
+   
 
 </body>
 </html>

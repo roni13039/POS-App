@@ -2,84 +2,32 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Tablix Name="Tablix2">
+      <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.83333in</Width>
+              <Width>1.3125in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.49479in</Height>
+              <Height>0.57292in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox8">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>number</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                    <Image Name="number">
+                      <Source>External</Source>
+                      <Value>=Fields!number.Value</Value>
+                      <Sizing>Fit</Sizing>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingLeft>5pt</PaddingLeft>
+                        <PaddingTop>6pt</PaddingTop>
+                        <PaddingBottom>6pt</PaddingBottom>
                       </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>0.49479in</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="number">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!number.Value</Value>
-                              <Style>
-                                <FontFamily>barcode font</FontFamily>
-                                <FontSize>28pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>number</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <rd:Selected>true</rd:Selected>
+                    </Image>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -94,18 +42,13 @@
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
-            <TablixMember>
               <Group Name="Details" />
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.36333in</Top>
-        <Left>0.28in</Left>
-        <Height>0.98958in</Height>
-        <Width>1.83333in</Width>
+        <Height>0.57292in</Height>
+        <Width>1.3125in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -113,17 +56,15 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.89583in</Height>
+    <Height>0.57292in</Height>
     <Style />
   </Body>
-  <Width>4.75917in</Width>
+  <Width>1.3125in</Width>
   <Page>
-    <PageHeight>11.69in</PageHeight>
-    <PageWidth>8.27in</PageWidth>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>1in</PageHeight>
+    <PageWidth>1.5in</PageWidth>
+    <LeftMargin>0.1in</LeftMargin>
+    <TopMargin>0.2in</TopMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

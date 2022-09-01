@@ -84,8 +84,6 @@ namespace POSApplication.Controllers
             ReportDataSource A = new ReportDataSource("DataSet1", stock);
             reportViewer.LocalReport.DataSources.Add(A);
             reportViewer.ShowRefreshButton = false;
-
-
             ViewBag.ReportViewer = reportViewer;
 
             return View("~/Views/StockReport/GetStockReport.cshtml");

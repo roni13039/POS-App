@@ -1561,6 +1561,7 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Reports\CustomerReport.rdlc
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Reports\PrintMemoReport.rdlc
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Reports\ProfitReport.rdlc
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Reports\SalesInvoice.rdlc
+D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Reports\BarCodeReport.rdlc
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.dll.config
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.pdb
@@ -1591,7 +1592,6 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.ReportViewer.WinFo
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.SqlServer.Types.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.Web.Infrastructure.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Newtonsoft.Json.dll
-D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\NextIT.Barcode.Core.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Owin.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\ReportViewerForMvc.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\System.Web.Helpers.dll
@@ -1707,6 +1707,7 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\pt\Microsoft.ReportViewer.Wi
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\POSApplication.csprojResolveAssemblyReference.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\RdlCompile.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\RdlCompile.compiled
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\POSApplication.dll

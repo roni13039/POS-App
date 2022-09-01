@@ -1,0 +1,5 @@
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\bin\Debug\BarcodeGenerator.dll
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\bin\Debug\BarcodeGenerator.pdb
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\obj\Debug\BarcodeGenerator.dll
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\obj\Debug\BarcodeGenerator.pdb
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\obj\Debug\BarcodeGenerator.csprojResolveAssemblyReference.cache

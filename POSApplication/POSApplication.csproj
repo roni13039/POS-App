@@ -3353,6 +3353,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BarcodeFiles\" />
+    <Folder Include="BarcodeImages\" />
+    <Folder Include="Content\BarcodeFiles\" />
+    <Folder Include="Content\BarcodeImages\" />
     <Folder Include="Content\EcommerceContent\career\" />
     <Folder Include="Content\EcommerceContent\images\" />
     <Folder Include="Content\EcommerceContent\news\" />
@@ -3389,7 +3393,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\BarCodeReport.rdlc" />
+    <Content Include="Reports\BarCodeReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BarcodeGenerator\BarcodeGenerator.csproj">
+      <Project>{2c85830e-15fe-4d99-82b2-0f07bbb907a8}</Project>
+      <Name>BarcodeGenerator</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
