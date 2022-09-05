@@ -2,9 +2,11 @@
 using BarcodeGenerator;
 using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
+using POSApplication.Models;
 using POSApplication.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -18,7 +20,7 @@ namespace POSApplication.Controllers
 {
     public class BarcodeController : Controller
     {
-        
+        private POSDBContext db = new POSDBContext();
         public ActionResult GenerateBarcode()
         {
             return View();
@@ -30,14 +32,15 @@ namespace POSApplication.Controllers
             //generate barcode
 
             //
-
+            var lastNumber = _GetBarcodeLastNumber(number);
             List<BarcodeNumber> barcodeNumber = new List<BarcodeNumber>();
 
             for (int i = 0; i < number; i++)
             {
-                var barcodePath = GenerateBarcodeImage("504560771121"+i);
+                var barcodePath = GenerateBarcodeImage((lastNumber + i).ToString());
                 barcodeNumber.Add(new BarcodeNumber() { number = barcodePath });
             }
+
 
             ReportViewer reportViewer = new ReportViewer();
             reportViewer.ProcessingMode = ProcessingMode.Local;
@@ -56,6 +59,10 @@ namespace POSApplication.Controllers
          
             reportViewer.ShowRefreshButton = false;
             ViewBag.ReportViewer = reportViewer;
+
+
+         
+
 
             return View("~/Views/StockReport/GetStockReport.cshtml");
         }
@@ -80,6 +87,19 @@ namespace POSApplication.Controllers
 
              barcodeUrl = new Uri(Server.MapPath("~/Content/BarcodeImages/" + barcodeValue + ".jpg")).AbsoluteUri;
             return barcodeUrl ;
+        }
+
+        private long _GetBarcodeLastNumber(long number)
+        {
+            var lastNumber = db.UDC_Barcode.Select(x => x.BarcodeNumber).FirstOrDefault();
+            var barcode= db.UDC_Barcode.FirstOrDefault();
+            barcode.BarcodeNumber = barcode.BarcodeNumber + number;
+
+            db.Entry(barcode).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return lastNumber;
+
         }
 
         private string GenerateRandomUniqueNumber(int length)

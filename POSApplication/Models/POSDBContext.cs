@@ -23,6 +23,7 @@ namespace POSApplication.Models
         {
 
         }
+        public virtual DbSet<UDC_Barcode> UDC_Barcode { get; set; }
         public virtual DbSet<OrderDet> OrderDets { get; set; }
         public virtual DbSet<OrderMas> OrderMas { get; set; }
         //----------------Parameter DBSet----------------//

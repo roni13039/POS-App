@@ -22,7 +22,22 @@ namespace POSApplication.Controllers
         public ActionResult Index()
         {
             return View(db.PurchaseInvoiceMas.OrderBy(x=>x.Date).ToList());
+
         }
+        public ActionResult ExpiraProductList()
+        {
+ 
+
+            return View();
+        }
+        public ActionResult ShowExpiraProductList(string serialNumber)
+        {
+
+            var data = db.PurchaseInvoiceDets.Where(x =>x.SerialNo.Contains(serialNumber)).ToList();
+
+            return View();
+        }
+
         public ActionResult Create()
         {
             ViewBag.SupplierId = new SelectList(db.Suppliers.ToList().Distinct().OrderBy(x=>x.SupplierName), "Id", "SupplierName");

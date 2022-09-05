@@ -270,6 +270,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ExpenseType.cs" />
     <Compile Include="Models\GeneralAccount.cs" />
+    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\OrderDet.cs" />
     <Compile Include="Models\OrderMa.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Models\Secu_User.cs" />
     <Compile Include="Models\SliderImage.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\UDC_Barcode.cs" />
     <Compile Include="Models\UserImage.cs" />
     <Compile Include="NotificationHelper\NotificationComponent.cs" />
     <Compile Include="NotificationHelper\NotificationHub.cs" />
@@ -3350,6 +3352,8 @@
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\ErrorHandler\NotFound.cshtml" />
     <Content Include="Views\Barcode\GenerateBarcode.cshtml" />
+    <Content Include="Views\PurchaseInvoice\ExpiraProductList.cshtml" />
+    <Content Include="Views\PurchaseInvoice\ShowExpiraProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

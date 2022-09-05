@@ -20,6 +20,7 @@ namespace POSApplication.Controllers
             return View();
         }
 
+       
         public ActionResult CreatePurchaseReport()
         {
             ViewBag.ProductCategoryId = new SelectList(db.ProductCategories.Distinct().OrderBy(x => x.CategoryName).ToList(), "Id", "CategoryName");
