@@ -1,0 +1,124 @@
+﻿@model IEnumerable<POSApplication.Models.SliderImage>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b> Slider Image  List</b></div>
+
+    <div class="panel-body">
+
+        <p>
+            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-success" })
+        </p><br>
+        <table id="datatable" class="table table-responsive table-bordered datatable1  datatable-show-all">
+            <thead>
+                <tr class="bg-blue">
+                    <th class="col-lg-4">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th class="col-lg-2">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th class="col-lg-4">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    @*<th class="col-lg-2">
+                        @Html.DisplayNameFor(model => model.ImageURL)
+                    </th>*@
+                    <th class="col-lg-2">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.ImageURL)
+                        </td>*@
+                        <td>
+                            @Html.ActionLink(" ", "Edit", new { Id = item.Id }, new { @class = "btn btn-xs-info  glyphicon glyphicon-pencil", @title = "Edit" })
+                            @*@Html.ActionLink(" ", "Details", new { Id = item.Id }, new { @class = "btn btn-xs text-info  icon-file-text2", @title = "Details" })*@
+                            <a class="btn btn-xs labeled btn-danger" title="Delete" href="javascript:deleteFunction(@item.Id)"><i class="glyphicon glyphicon-remove"></i>   </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+@section scripts
+{
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script>
+            //$(".select2").select2();
+        $("#datatable").DataTable();
+
+
+
+
+
+            function deleteFunction(Id) {
+                var Con = confirm("are you sure want to delete this ?");
+                if (Con == true) {
+                    $.ajax({
+                        url: "/SliderImages/DeleteItem",
+                        type: "post",
+                        data: {
+                            Id: Id
+                        },
+                        dataType: "json",
+
+                        success: function (flag) {
+                            console.log(flag);
+
+                            if (flag.flag == true) {
+                                Swal.fire({
+                                    position: 'top',
+                                    icon: 'success',
+                                    title: 'Successfully Deleted!',
+                                    showConfirmButton: true,
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location = "/SliderImages/Index";
+
+                                    }
+                                })
+                            }
+
+                            else {
+                                alert(flag.message);
+                            }
+                        },
+
+                        error: function (xhr) {
+                            alert('error');
+
+                        }
+
+
+                    });
+                }
+
+            }
+    </script>
+}
+

@@ -29,15 +29,13 @@ namespace POSApplication.Controllers
         public ActionResult GenerateBarcode(int  number)
         {
 
-            //generate barcode
-
-            //
-            var lastNumber = _GetBarcodeLastNumber(number);
+      
             List<BarcodeNumber> barcodeNumber = new List<BarcodeNumber>();
-
+            var lastNumber = _GetBarcodeLastNumber(number);
             for (int i = 0; i < number; i++)
             {
-                var barcodePath = GenerateBarcodeImage((lastNumber + i).ToString());
+           
+                var barcodePath = GenerateBarcodeImage((lastNumber+i).ToString());
                 barcodeNumber.Add(new BarcodeNumber() { number = barcodePath });
             }
 
@@ -79,7 +77,7 @@ namespace POSApplication.Controllers
             int width = Convert.ToInt32(120);
             int length = Convert.ToInt32(50);
 
-            TYPE type = (TYPE)Enum.Parse(typeof(TYPE), "EAN13"); //need to remove upper case
+            TYPE type = (TYPE)Enum.Parse(typeof(TYPE), "CODE39"); //need to remove upper case
 
             GenerateBarcode _barcodegen = new GenerateBarcode();
 
@@ -101,26 +99,7 @@ namespace POSApplication.Controllers
             return lastNumber;
 
         }
-
-        private string GenerateRandomUniqueNumber(int length)
-        {
-            string numbers = "0";
-            string characters = numbers;
-           
-            string id = string.Empty;
-            for (int i = 0; i < length; i++)
-            {
-                string character = string.Empty;
-                do
-                {
-                    int index = new Random().Next(0, characters.Length);
-                    character = characters.ToCharArray()[index].ToString();
-                } while (id.IndexOf(character) != -1);
-                id += character;
-            }
-            return id;
-  
-        }
+      
     }
 
 }

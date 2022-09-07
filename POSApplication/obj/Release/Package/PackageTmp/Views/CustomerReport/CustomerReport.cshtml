@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "CustomerReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "SalesInvoiceReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+</div>
+
+

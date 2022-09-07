@@ -1712,3 +1712,5 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\RdlCompile.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\RdlCompile.compiled
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\POSApplication.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Release\POSApplication.pdb
+D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.dll
+D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.pdb

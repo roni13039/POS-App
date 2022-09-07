@@ -1,0 +1,219 @@
+﻿@model POSApplication.Models.News
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-heading">
+        <h5 class="panel-title">News Information</h5>
+    </div>
+    <div class="panel-body">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @*<h4>News</h4>
+                <hr />*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+                <div class="form-group">
+                    @Html.Label("Name", new { @class = "control-label col-md-2" })
+                    @*@Html.LabelFor(model => model.ClientsName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Description", new { @class = "control-label col-md-2" })
+                    @*@Html.LabelFor(model => model.ClientsName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.ImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ImageURL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+<div class="form-group" style="padding-top:20px;">
+    @*@using (Html.BeginForm("SliderImageSave", "SliderImages", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myform" }))
+        {*@
+    <div class="col-lg-3">
+        <input type="hidden" value="" id="UId" name="UId" />
+        @*<div class="col-lg-2">Upload Photo</div>*@
+        <div class="col-lg-3">
+            <input type="file" name="postedFiles" id="FileUpload1" />
+        </div>
+    </div>
+
+    @*@*<input type="file" name="postedFiles" id="postedFiles" multiple="multiple" />*@ @*For uploading multiple files*@
+    <br><br>
+
+</div>
+
+<div class="panel panel-primary panel-bordered">
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                <button type="button" class="btn btn-success" id="saveState">Save <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+
+    $('#saveState').click(function () {
+
+
+        if ($.trim($('#Name').val()) === "") {
+            alert('Name required');
+            $('#Name').focus();
+        }
+
+        else if ($.trim($('#Description').val()) === "") {
+            alert('Description required');
+            $('#Description').focus();
+        }
+
+        var file = $('#FileUpload1').val();
+        if (file == '') {
+            alert("Please Upload a Image");
+        }
+
+        else {
+            SaveUserData();
+        }
+
+
+
+    });
+
+
+
+    function SaveUserData() {
+
+        $("#saveState").attr("disabled", "disabled");
+
+        // save Image
+        var fileUpload = $("#FileUpload1").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object
+        var fileData = new FormData();
+
+        // Looping over all files and add it to FormData object
+        for (var i = 0; i < files.length; i++) {
+            fileData.append(files[i].name, files[i]);
+        }
+
+        // Adding one more key to FormData object
+
+      //alert("ok");
+        Description
+        var Name = $('#Name').val();
+        var Description = $('#Description').val();
+        //alert(ClientsName);
+        //alert(Description);
+        fileData.append('Name', Name);
+        fileData.append('Description', Description);
+
+        //clients = JSON.stringify({
+        //    Id: 0,
+        //    ClientsName: ClientsName,
+        //    Description: Description,
+        //});
+
+
+        $.ajax({
+
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            type: 'POST',
+            url: '/News/SaveData',
+            data: fileData,
+            success: function (result) {
+                //console.log(result);
+                $("#saveState").removeAttr("disabled");
+                if (result.flag == true) {
+
+                    $('#submit').click();
+
+
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Successfully Saved!',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = "/News/Index";
+                        }
+                    })
+
+                }
+                else {
+                    alert(result.message);
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('Error: ' + textStatus + ' - ' + errorThrown);
+                $("#saveState").removeAttr("disabled");
+            }
+        });
+
+    }
+
+
+
+</script>

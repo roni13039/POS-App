@@ -26,8 +26,9 @@ namespace POSApplication.Controllers
                 SalesPrice = x.SalesPrice??0.00m,
                 ProductId = x.ProductId,
                 ProductName = x.Product.ProductName,
+                Id=x.Id
                 
-            }).OrderByDescending(x=>x.PurchasePrize).Take(1).ToList();
+            }).OrderByDescending(x=>x.Id).Take(1).ToList();
 
             return data;
         }

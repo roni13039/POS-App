@@ -346,6 +346,7 @@
     <Compile Include="ViewModel\Profit.cs" />
     <Compile Include="ViewModel\VMCartProduct.cs" />
     <Compile Include="ViewModel\VMCustomer.cs" />
+    <Compile Include="ViewModel\VMExpireProducts.cs" />
     <Compile Include="ViewModel\VMProfitSummaryDS.cs" />
     <Compile Include="ViewModel\VMPurchaseInvoice.cs" />
     <Compile Include="ViewModel\VMSalesInvoice.cs" />

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "GenerateBarcode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("GenerateBarcode", "Barcode", FormMethod.Post))
+    {
+        <input type="number" name="number" placeholder="Enter Barcode Quantity"/>
+        <input type="submit" value="Generate Barcode" />
+
+    }
+   
+
+</body>
+</html>

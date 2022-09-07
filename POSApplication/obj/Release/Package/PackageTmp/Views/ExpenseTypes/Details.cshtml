@@ -1,0 +1,35 @@
+﻿@model POSApplication.Models.ExpenseType
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExpenseType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayOver)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayOver)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

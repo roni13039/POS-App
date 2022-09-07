@@ -207,7 +207,6 @@ namespace POSApplication.Controllers
                     Value = x.Id,
                     Text = x.ProductName
                 }).Distinct().ToList();
-
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
         }
@@ -223,8 +222,9 @@ namespace POSApplication.Controllers
                 var data = db.PurchaseInvoiceDets.Where(x => x.ProductId == ProductId).Select(x => new
                 {
                     PurchasePrize = x.PurchasePrize,
+                    Id=x.Id
          
-                }).OrderByDescending(x=>x.PurchasePrize).FirstOrDefault();
+                }).OrderByDescending(x=>x.Id).FirstOrDefault();
 
                 if (data==null)
                 {

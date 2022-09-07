@@ -11,6 +11,7 @@ using System.Web.Security;
 using System.Data.SqlClient;
 using System.Transactions;
 using POSApplication.Helpers;
+using POSApplication.ViewModel;
 
 namespace POSApplication.Controllers
 {
@@ -19,11 +20,7 @@ namespace POSApplication.Controllers
     {
         private POSDBContext db = new POSDBContext();
 
-        public ActionResult Index()
-        {
-            return View(db.PurchaseInvoiceMas.OrderBy(x=>x.Date).ToList());
-
-        }
+        
         public ActionResult ExpiraProductList()
         {
  
@@ -35,17 +32,64 @@ namespace POSApplication.Controllers
 
             var data = db.PurchaseInvoiceDets.Where(x =>x.SerialNo.Contains(serialNumber)).ToList();
 
-            return View();
+            return View(data);
+        }
+        
+        [HttpPost]
+        public JsonResult UpdateProductQtyForExpire(List<VMExpireProducts>DetailsValue)
+        {
+            var result = new
+            {
+                flag = false,
+                message = "Error occured.!",
+            };
+            try
+            {
+                if (DetailsValue.Count > 0)
+                {
+                    foreach (var item in DetailsValue)
+                    {
+                        var data = db.PurchaseInvoiceDets.Where(x => x.Id == item.Id).FirstOrDefault();
+                        data.Quantity = data.Quantity - item.quantity;
+                        db.Entry(data).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    result = new
+                    {
+                        flag = true,
+                        message = "Succes occured. !",
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                result = new
+                {
+                    flag = false,
+                    message = "Fail occured. !",
+                };
+                var message = ex.Message;
+            }
+                
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Index()
+        {
+            return View(db.PurchaseInvoiceMas.OrderBy(x => x.Date).ToList());
+
+        }
         public ActionResult Create()
         {
             ViewBag.SupplierId = new SelectList(db.Suppliers.ToList().Distinct().OrderBy(x=>x.SupplierName), "Id", "SupplierName");
             return View();
         }
 
-        [HttpPost]
-     
+
+
+
+
+        [HttpPost]    
         public JsonResult SavePurchaseInvoice(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
         {
             var result = new

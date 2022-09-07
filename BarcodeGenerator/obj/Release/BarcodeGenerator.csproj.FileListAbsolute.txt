@@ -1,0 +1,4 @@
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\bin\Release\BarcodeGenerator.dll
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\bin\Release\BarcodeGenerator.pdb
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\obj\Release\BarcodeGenerator.dll
+D:\Roni_Talukder\Live\Source_POS\BarcodeGenerator\obj\Release\BarcodeGenerator.pdb

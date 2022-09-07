@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Roni_Talukder\Live\Publish\Publish_13_08_2022</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Roni_Talukder\Live\Publish\Publish_07_09_2022</_PublishTargetUrl>
     <History>True|2022-07-07T07:48:28.5462955Z;</History>
   </PropertyGroup>
   <ItemGroup>
@@ -21,6 +21,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>08/11/2022 14:15:14</publishTime>
+    </File>
+    <File Include="bin/BarcodeGenerator.dll">
+      <publishTime>09/06/2022 17:53:41</publishTime>
     </File>
     <File Include="bin/Content/images/VillageMarket.png">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -314,7 +317,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2022 14:15:17</publishTime>
     </File>
     <File Include="bin/POSApplication.dll">
-      <publishTime>08/13/2022 17:21:29</publishTime>
+      <publishTime>09/07/2022 15:22:31</publishTime>
     </File>
     <File Include="bin/POSApplication.pdb">
       <publishTime>07/07/2022 17:59:58</publishTime>
@@ -340,11 +343,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Reports/AccountExpense.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
+    <File Include="bin/Reports/BarCodeReport.rdlc">
+      <publishTime>09/01/2022 17:42:01</publishTime>
+    </File>
     <File Include="bin/Reports/CustomerReport.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
     <File Include="bin/Reports/ExpireProduct.rdlc">
-      <publishTime>08/11/2022 14:15:14</publishTime>
+      <publishTime>08/14/2022 15:06:13</publishTime>
     </File>
     <File Include="bin/Reports/PrintMemoReport.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9085,6 +9091,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ReportDataset/Accounts.xss">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
+    <File Include="ReportDataset/BarcodeImageDS.xsc">
+      <publishTime>08/31/2022 12:04:04</publishTime>
+    </File>
+    <File Include="ReportDataset/BarcodeImageDS.xss">
+      <publishTime>08/31/2022 12:04:04</publishTime>
+    </File>
     <File Include="ReportDataset/CustomerReportDS.xsc">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
@@ -9130,11 +9142,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Reports/AccountExpense.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
+    <File Include="Reports/BarCodeReport.rdlc">
+      <publishTime>09/01/2022 17:42:01</publishTime>
+    </File>
     <File Include="Reports/CustomerReport.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
     <File Include="Reports/ExpireProduct.rdlc">
-      <publishTime>08/11/2022 14:15:14</publishTime>
+      <publishTime>08/14/2022 15:06:13</publishTime>
     </File>
     <File Include="Reports/PrintMemoReport.rdlc">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9225,6 +9240,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Authentication/Login.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
+    </File>
+    <File Include="Views/Barcode/GenerateBarcode.cshtml">
+      <publishTime>08/31/2022 16:48:17</publishTime>
     </File>
     <File Include="Views/CareerCirculars/Create.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9440,7 +9458,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
     <File Include="Views/PurchaseInvoice/Create.cshtml">
-      <publishTime>08/11/2022 16:03:43</publishTime>
+      <publishTime>09/06/2022 14:46:26</publishTime>
     </File>
     <File Include="Views/PurchaseInvoice/Delete.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9451,8 +9469,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/PurchaseInvoice/Edit.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
+    <File Include="Views/PurchaseInvoice/ExpiraProductList.cshtml">
+      <publishTime>09/06/2022 14:48:23</publishTime>
+    </File>
     <File Include="Views/PurchaseInvoice/Index.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
+    </File>
+    <File Include="Views/PurchaseInvoice/ShowExpiraProductList.cshtml">
+      <publishTime>09/06/2022 15:15:09</publishTime>
     </File>
     <File Include="Views/PurchaseReport/CreateExpireProductReport.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9467,7 +9491,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2022 14:15:14</publishTime>
     </File>
     <File Include="Views/SalesInvoice/Create.cshtml">
-      <publishTime>08/13/2022 17:06:49</publishTime>
+      <publishTime>09/07/2022 14:25:41</publishTime>
     </File>
     <File Include="Views/SalesInvoice/Delete.cshtml">
       <publishTime>08/11/2022 14:15:14</publishTime>
@@ -9524,7 +9548,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2022 14:15:15</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/11/2022 14:15:15</publishTime>
+      <publishTime>09/06/2022 14:15:27</publishTime>
     </File>
     <File Include="Views/SliderImages/Create.cshtml">
       <publishTime>08/11/2022 14:15:15</publishTime>
@@ -9575,7 +9599,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2022 14:15:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/11/2022 16:41:13</publishTime>
+      <publishTime>09/06/2022 17:53:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

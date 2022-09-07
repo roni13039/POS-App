@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Career";
+    Layout = "~/Views/Shared/_EcommerceLayout.cshtml";
+
+    var si = 0;
+
+    //var Price = 0.00m;
+    //var totalPrice = 0.00m;
+}
+
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+
+
+            <table class="table col-8" style="margin-left:50px;">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>SI No</th>
+                        <th>Job Title</th>
+                        <th>Published Date</th>
+                        <th>Expired Date</th>
+                        <th>Apply</th>
+                        @*<th>Quantity</th>
+                            <th>Total</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        si++;
+                        
+                        <tr class="text-center">
+                            <td>
+                                <input type="hidden" name="Id" value="@item.Id" class="form-control  input-sm Id" readonly />
+                                @*<input type="text" name="SlNo" value="@si" class="form-control  input-sm SlNo" readonly />*@
+                                @si
+                            </td>
+
+                            <td>
+                                @*<input type="text" name="JobTitle" value="@item.JobTitle" class="form-control text-black input-sm JobTitle" readonly />*@
+                                @item.JobTitle
+                            </td>
+
+                            <td>
+                                @*<input type="text" name="PublishedDate" value="@item.PublishedDate.ToShortDateString()" class="form-control text-black input-sm PublishedDate" readonly />*@
+                                @item.PublishedDate.ToShortDateString()
+                            </td>
+
+                            <td>
+                                @*<input type="text" name="ExpiredDate" value="@item.ExpiredDate.ToShortDateString()" class="form-control text-black input-sm ExpiredDate" readonly />*@
+                                @item.ExpiredDate.ToShortDateString()
+                            </td>
+
+                            <td>
+                                <p>
+                                    <a class="btn btn-primary py-2 px-3" title="Apply Online" href="javascript:deleteFunction(@item.Id)" style="margin-top:10px">Apply Online@*<i class="glyphicon glyphicon-remove"></i>*@</a>
+                                </p>
+                            </td>
+                        </tr><!-- END TR-->
+                    }
+                </tbody>
+                @*<tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="bg-blue">Total</td>
+                            <td>
+
+                                <input type="text" name="TotalAmount" class="bg-primary text-black-80" id="TotalAmount" readonly />
+                            </td>
+                            <td>
+
+                                <input type="text" value="@totalPrice" name="TotalAmount" class="bg-primary text-black-80" id="TotalAmount" readonly />
+                            </td>
+                    </tfoot>*@
+            </table>
+
+
+
+
+        </div>
+        <div class="row justify-content-end">
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<script type="text/javascript">
+
+    function deleteFunction(id)
+        {
+            window.location = "/EcommerceHome/CareerApply";
+        }
+
+
+
+
+
+</script>
