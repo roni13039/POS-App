@@ -76,21 +76,21 @@ namespace POSApplication.Controllers
 
         public ActionResult Index()
         {
-            return View(db.PurchaseInvoiceMas.OrderBy(x => x.Date).ToList());
+            return View(db.PurchaseInvoiceMas.OrderByDescending(x => x.Date).ToList());
 
         }
         public ActionResult Create()
         {
             ViewBag.SupplierId = new SelectList(db.Suppliers.ToList().Distinct().OrderBy(x=>x.SupplierName), "Id", "SupplierName");
-            return View();
+
+            PurchaseInvoiceMa purchaseInvoiceMa = new PurchaseInvoiceMa();
+            purchaseInvoiceMa.Id = 0;
+            purchaseInvoiceMa.Date = DateTime.Now.Date;
+            return View(purchaseInvoiceMa);
         }
 
-
-
-
-
         [HttpPost]    
-        public JsonResult SavePurchaseInvoice(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
+        public JsonResult SaveUpdatePurchaseInvoice(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
         {
             var result = new
             {
@@ -99,34 +99,21 @@ namespace POSApplication.Controllers
 
             };
 
-
             if (ModelState.IsValid)
             {               
                 using (TransactionScope transaction = new TransactionScope())
                 {
                     try
                     {
-                        purchaseInvoiceMa.UserId =(int) Session["uid"];
-                        
-                        db.PurchaseInvoiceMas.Add(purchaseInvoiceMa);
-                        db.SaveChanges();
-
-                        foreach (var item in PurchaseInvoicedDetails)
+                        if (purchaseInvoiceMa.Id == 0)
                         {
-                            PurchaseInvoiceDet det = new PurchaseInvoiceDet();
-                            det.PurchaseInvoiceMasId = purchaseInvoiceMa.Id;
-                            det.ProductCategoryId = item.ProductCategoryId;
-                            det.Quantity = item.Quantity;
-                            det.SerialNo = item.SerialNo;
-                            det.PurchasePrize = item.PurchasePrize;
-                            det.Amount = item.Amount;
-                            det.ProductId = item.ProductId;
-                            det.ExpireDate = item.ExpireDate;
-                            det.SalesPrice = item.SalesPrice;
-                            
-                            db.PurchaseInvoiceDets.Add(det);
-                            db.SaveChanges();
+                          _SavePurchase(purchaseInvoiceMa, PurchaseInvoicedDetails);
                         }
+                        else
+                        {
+                            _UpdatePurchase(purchaseInvoiceMa, PurchaseInvoicedDetails);
+                        }
+
                         transaction.Complete();
                         result = new
                         {
@@ -146,7 +133,6 @@ namespace POSApplication.Controllers
                         };
 
                         var message = ex.Message;
-
                     }
                 }
 
@@ -155,7 +141,79 @@ namespace POSApplication.Controllers
 
                 return Json(result,JsonRequestBehavior.AllowGet);
         }
-        
+        private void _SavePurchase(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
+        {
+            try
+            {
+                purchaseInvoiceMa.UserId = (int)Session["uid"];
+                db.PurchaseInvoiceMas.Add(purchaseInvoiceMa);
+                db.SaveChanges();
+
+                foreach (var item in PurchaseInvoicedDetails)
+                {
+                    PurchaseInvoiceDet det = new PurchaseInvoiceDet();
+                    det.PurchaseInvoiceMasId = purchaseInvoiceMa.Id;
+                    det.ProductCategoryId = item.ProductCategoryId;
+                    det.Quantity = item.Quantity;
+                    det.SerialNo = item.SerialNo;
+                    det.PurchasePrize = item.PurchasePrize;
+                    det.Amount = item.Amount;
+                    det.ProductId = item.ProductId;
+                    det.ExpireDate = item.ExpireDate;
+                    det.SalesPrice = item.SalesPrice;
+
+                    db.PurchaseInvoiceDets.Add(det);
+                    db.SaveChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        private bool _UpdatePurchase(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
+        {
+
+            try
+            {
+                var data = db.PurchaseInvoiceDets.Where(x => x.PurchaseInvoiceMasId == purchaseInvoiceMa.Id).ToList();
+                db.PurchaseInvoiceDets.RemoveRange(data);
+                db.SaveChanges();
+
+                purchaseInvoiceMa.UserId = (int)Session["uid"];
+
+                db.Entry(purchaseInvoiceMa).State = EntityState.Modified;
+                db.SaveChanges();
+       
+                foreach (var item in PurchaseInvoicedDetails)
+                {
+                    PurchaseInvoiceDet det = new PurchaseInvoiceDet();
+                    det.PurchaseInvoiceMasId = purchaseInvoiceMa.Id;
+                    det.ProductCategoryId = item.ProductCategoryId;
+                    det.Quantity = item.Quantity;
+                    det.SerialNo = item.SerialNo;
+                    det.PurchasePrize = item.PurchasePrize;
+                    det.Amount = item.Amount;
+                    det.ProductId = item.ProductId;
+                    det.ExpireDate = item.ExpireDate;
+                    det.SalesPrice = item.SalesPrice;
+
+                    db.PurchaseInvoiceDets.Add(det);
+                    db.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+         
+        }
+
         [HttpPost]
         public JsonResult UpdatePurchaseInvoice(PurchaseInvoiceMa purchaseInvoiceMa, List<PurchaseInvoiceDet> PurchaseInvoicedDetails)
         {
@@ -242,7 +300,7 @@ namespace POSApplication.Controllers
             ViewBag.Email = purchaseInvoiceMa.Supplier.Email;
             ViewBag.Phone = purchaseInvoiceMa.Supplier.Phone;
 
-            return View(purchaseInvoiceMa);
+            return View("Create",purchaseInvoiceMa);
         }
 
         // POST: PurchaseInvoice/Edit/5
@@ -273,6 +331,7 @@ namespace POSApplication.Controllers
                     Amount= x.Amount,
                     PurchasePrize=x.PurchasePrize,
                     SerialNo = x.SerialNo??"",
+                    SalesPrice = x.SalesPrice??0.00m,
                     ExpireDate = x.ExpireDate==null? "" : x.ExpireDate.ToString()
           }).ToList();
 
@@ -298,7 +357,6 @@ namespace POSApplication.Controllers
             }
 
         }
-
         public JsonResult GetProductCatagoryName()
         {
 

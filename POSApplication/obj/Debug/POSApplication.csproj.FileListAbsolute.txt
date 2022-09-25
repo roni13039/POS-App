@@ -3743,6 +3743,7 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.dll.config
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\POSApplication.pdb
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Antlr3.Runtime.dll
+D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\EntityFramework.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\EntityFramework.SqlServer.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\itextsharp.dll
@@ -3793,6 +3794,7 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.MSXML.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.Build.Utilities.Core.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\Microsoft.Build.Framework.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\VSLangProj2.dll
+D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.pdb
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\EntityFramework.xml
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\EntityFramework.SqlServer.xml
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\itextsharp.xml
@@ -3884,10 +3886,8 @@ D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\pt\Microsoft.ReportViewer.Wi
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.csprojResolveAssemblyReference.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\RdlCompile.cache
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\RdlCompile.compiled
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.dll
 D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.pdb
-D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.dll
-D:\Roni_Talukder\Live\Source_POS\POSApplication\bin\BarcodeGenerator.pdb
-D:\Roni_Talukder\Live\Source_POS\POSApplication\obj\Debug\POSApplication.csprojResolveAssemblyReference.cache

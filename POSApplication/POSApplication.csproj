@@ -3100,14 +3100,13 @@
     <Content Include="Content\EcommerceContent\scss\bootstrap\_utilities.scss" />
     <Content Include="Content\EcommerceContent\scss\bootstrap\_variables.scss" />
     <Content Include="Content\EcommerceContent\scss\style.scss" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\Talukder.pubxml" />
     <Content Include="ReportDataset\StockDS.xsc">
       <DependentUpon>StockDS.xsd</DependentUpon>
     </Content>
     <Content Include="ReportDataset\Accounts.xsc">
       <DependentUpon>Accounts.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\PosPublish.pubxml" />
     <None Include="ReportDataset\Accounts.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

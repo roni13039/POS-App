@@ -199,7 +199,7 @@ namespace POSApplication.Controllers
         {
 
             var expireDays = DateTime.Now.AddDays(Days ?? 0);
-            var data = db.PurchaseInvoiceDets.Where(x => (x.ExpireDate <= expireDays)
+            var data = db.PurchaseInvoiceDets.Where(x => (x.ExpireDate >=DateTime.Now && x.ExpireDate<=expireDays)
                         && ((x.ProductCategoryId == ProductCategoryId) || (ProductCategoryId == null))
                         && ((x.ProductId == productId) || (productId == null))
                         ).OrderBy(x => x.ExpireDate).ToList();
